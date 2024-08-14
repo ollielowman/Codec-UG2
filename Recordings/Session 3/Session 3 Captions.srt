@@ -1,0 +1,859 @@
+1
+00:00:02,986 --> 00:00:10,832
+All right. It seems like before in the meeting.
+OK, that's all right. So thanks for joining
+
+2
+00:00:10,872 --> 00:00:19,040
+today. So today we are having the third session
+on Super Luminal Communication Voice Codec
+
+3
+00:00:19,500 --> 00:00:29,369
+project. And this is focusing on solving your
+problems and any questions you can get solved.
+
+4
+00:00:29,829 --> 00:00:37,262
+So. I'm Dhruvishka, your teaching assistant
+for the project and as well as the proxy client
+
+5
+00:00:37,342 --> 00:00:48,373
+of the project. And our project client is MapTek.
+So moving forward, so before we start, I would
+
+6
+00:00:48,393 --> 00:00:54,559
+like to give you a brief introduction on the
+project. This is how I articulate the project
+
+7
+00:00:54,699 --> 00:01:02,866
+and the title. So the project is Superluminal
+Communication Voice Codec, which means if we
+
+8
+00:01:03,086 --> 00:01:09,712
+segregate this into three parts, as superluminal
+communication, which means communicating faster
+
+9
+00:01:09,752 --> 00:01:17,648
+than the speed of light. And up to now with
+the current technology feasibilities, this
+
+10
+00:01:17,668 --> 00:01:29,453
+is considered as physically incapable. So scientists
+are thinking of a solution to reach, at least
+
+11
+00:01:29,473 --> 00:01:38,677
+to reach that level up to a certain point. So
+they have come up with a theoretical solution
+
+12
+00:01:38,817 --> 00:01:48,846
+called wormholes. where it is created in the
+space to travel from one end to another end
+
+13
+00:01:49,487 --> 00:01:59,713
+within a minimum time. And this concept, still
+it's in the conceptual level, but it could
+
+14
+00:01:59,773 --> 00:02:11,711
+not be able to produce without a huge investment.
+Even though we have created such a wormhole
+
+15
+00:02:11,751 --> 00:02:21,615
+in the space, at the initial phase of this kind
+of a solution, we cannot test that with some
+
+16
+00:02:21,655 --> 00:02:32,699
+human beings. So that's why we are trying to
+pass this as an initial step. We are trying
+
+17
+00:02:32,739 --> 00:02:41,279
+to pass some messages through this created wormhole.
+as you can see there's a tunnel kind of thing
+
+18
+00:02:41,339 --> 00:02:49,884
+in this wormhole. So it's believed that if we
+try to send a message from one end to another
+
+19
+00:02:50,004 --> 00:02:58,589
+end we can pass this message. But why cannot
+we pass human beings like that or a spaceship
+
+20
+00:02:58,949 --> 00:03:06,673
+to travel in between these two places because
+these wormholes are considered really small.
+
+21
+00:03:07,026 --> 00:03:16,892
+and spaceship kind of things cannot be passed
+through that. That's and if we try to wider
+
+22
+00:03:17,012 --> 00:03:26,979
+this size of the wormhole, it is like really,
+really costly. We have to do a bigger investments
+
+23
+00:03:27,039 --> 00:03:35,425
+on that. So what we are trying to do is passing
+some information. Hence, we are trying to creating
+
+24
+00:03:35,485 --> 00:03:43,348
+this voice coding. which means we are trying
+to pass a audio file a compressed audio file
+
+25
+00:03:43,388 --> 00:03:50,391
+from one end to another end where in one end
+we are trying to encode it and pass it through
+
+26
+00:03:50,431 --> 00:03:59,294
+the tunnel and at the other end of the tunnel
+this the one who is receiving the message can
+
+27
+00:03:59,334 --> 00:04:07,838
+decode it and listen to the message you sent.
+So simply this is what you have to do. So there's
+
+28
+00:04:07,878 --> 00:04:16,381
+a program written by you, which has two functionalities.
+One is encoding, and the other one is decoding.
+
+29
+00:04:16,902 --> 00:04:27,606
+So once a person encode, input a file, let's
+say, voice.wav file. And he or she tries to
+
+30
+00:04:27,706 --> 00:04:35,929
+encode it. And while passing through the program,
+it will be compressed and will create a payload
+
+31
+00:04:35,969 --> 00:04:46,035
+bit. And once this payload bin is passed through
+to the receiver, he or she can decode this
+
+32
+00:04:46,075 --> 00:04:55,901
+payload and then come up with the output, which
+means the voice out dot wave file. So here's
+
+33
+00:04:56,722 --> 00:05:05,386
+the entire picture that we can see of how the
+things work. So. like I said previously voice.pale
+
+34
+00:05:05,926 --> 00:05:14,389
+input file comes and it is encoded using your
+command encode and it is saved as a payload
+
+35
+00:05:14,629 --> 00:05:21,211
+bin and the one who receives that payload bin
+use the command decode and then create the
+
+36
+00:05:21,331 --> 00:05:34,908
+output file. So when compressing this file it
+could be Sometimes let's say you might be able
+
+37
+00:05:34,948 --> 00:05:41,293
+to compress this file to the hundred percent
+or at least to ninety percent ninety five percent
+
+38
+00:05:42,114 --> 00:05:52,744
+but it doesn't ensure that you the one who is
+receiving that file once it is decoded it doesn't
+
+39
+00:05:53,244 --> 00:06:01,835
+ensure that he or she can play back and understand
+the message that you that consists the file
+
+40
+00:06:01,916 --> 00:06:10,983
+correctly. So we have to identify the sweet
+point in between this compression rate and
+
+41
+00:06:11,023 --> 00:06:18,630
+the fidelity. So accuracy as if you if you listen
+to the kickoff meeting by you know professor
+
+42
+00:06:18,650 --> 00:06:25,716
+Simon. So he's explaining it's not implemented
+yet. So we have to do some trial and errors
+
+43
+00:06:25,756 --> 00:06:33,376
+to understand this. most feasible solution for
+this compression rate and the fidelity rate.
+
+44
+00:06:33,816 --> 00:06:41,259
+So with that understanding let's go to the project
+aim. So here the project aim is developing
+
+45
+00:06:41,859 --> 00:06:50,883
+sorry developing sorry again developing a highly
+efficient voice encoder and decoder with maximal
+
+46
+00:06:50,943 --> 00:06:58,130
+compression and high intelligibility. What do
+we mean by intelligibility here? It is once
+
+47
+00:06:58,711 --> 00:07:05,178
+you receive the file, once you decode that file,
+you should be able to replay that and understand
+
+48
+00:07:05,218 --> 00:07:15,207
+the message that consists the file. So these
+are the functional requirement details shared
+
+49
+00:07:15,407 --> 00:07:28,491
+by our client. So you can name your file as
+name.py if you are using a Python script. Or
+
+50
+00:07:28,611 --> 00:07:35,312
+if you are using a standalone executable, it
+can be named as name.exe. And these are the
+
+51
+00:07:35,953 --> 00:07:41,299
+encoding and decoding steps that you need to
+follow. You have the file and you have a command
+
+52
+00:07:41,399 --> 00:07:48,203
+called encode. And once the input file is given,
+you have to create the payload. And in the
+
+53
+00:07:48,303 --> 00:07:56,548
+same application, you have to have the decoding
+step password. So file is there. Once you put
+
+54
+00:07:56,588 --> 00:08:05,453
+the decoding command, you can, using that payload
+file, payload.bin, you can decode it and create
+
+55
+00:08:05,473 --> 00:08:13,700
+the output.bin file. And apart from that, if
+there are any other dependencies coming up
+
+56
+00:08:13,760 --> 00:08:22,605
+with your script or the.exe file, you have to
+zip all together and create this file and make
+
+57
+00:08:22,645 --> 00:08:32,070
+it as a name.zip. And this program should be
+run on a virtual machine running Windows on
+
+58
+00:08:32,250 --> 00:08:43,737
+Azure. And apart from that, this single channel
+LPCM sampled at 44.1 kilohertz with 16 bits
+
+59
+00:08:43,917 --> 00:08:53,664
+per sample and we are using some voice human
+voice audio for this one. So the project deliverables
+
+60
+00:08:54,144 --> 00:09:01,829
+are the encoding algorithm, decoding algorithm
+and the documentation of each process. Here
+
+61
+00:09:02,029 --> 00:09:08,106
+I have given you some sample user stories, you
+don't have to specifically stick into that.
+
+62
+00:09:09,267 --> 00:09:17,174
+You can create any number of user stories as
+we go forward and feel free to get some sort
+
+63
+00:09:17,214 --> 00:09:23,379
+of an idea or the format that you have to maintain
+when you are creating user stories as a best
+
+64
+00:09:23,479 --> 00:09:32,910
+practice here. So one example is as a user,
+I want to upload a.wav file. the codecs so
+
+65
+00:09:32,930 --> 00:09:43,293
+that I can encode the input file. So as a user
+or as the person who is using this program
+
+66
+00:09:43,873 --> 00:09:50,215
+I want to what I really need there and so that
+what I can achieve. So that's the format that
+
+67
+00:09:50,235 --> 00:09:55,756
+we are maintaining and for each and every user
+story it's better to have an acceptance criteria
+
+68
+00:09:56,476 --> 00:10:07,489
+which gives what is client expecting. after
+using this user story. And there are a few
+
+69
+00:10:07,629 --> 00:10:14,712
+other user stories I have shared with you, like
+three of them. Yeah. And I would like to say
+
+70
+00:10:14,752 --> 00:10:21,915
+a word about the upcoming sessions as well.
+Now, this will be the last Q&A session we are
+
+71
+00:10:22,235 --> 00:10:32,023
+having today. And going forward, we will be
+having one-to-one client meetings with each
+
+72
+00:10:32,063 --> 00:10:42,570
+group and a client meeting will be where I represent
+the client as the proxy client and you'll be
+
+73
+00:10:42,630 --> 00:10:49,514
+given 25 minutes each team bi-weekly we will
+be having this meeting. We are going like a
+
+74
+00:10:51,135 --> 00:10:52,156
+sprint in here.
+
+75
+00:10:55,530 --> 00:11:07,242
+the processes that everything is following a
+Jazz Chrome practice and any, you know. any
+
+76
+00:11:07,282 --> 00:11:12,766
+assignments and everything that some need to
+submit. It's going like reports that you need
+
+77
+00:11:12,786 --> 00:11:22,434
+to provide. It's going like sprint wise. So
+I think from 12th August onward, we can start
+
+78
+00:11:22,594 --> 00:11:31,442
+our meetings. And you have to share the, you
+have to take the responsibility of sharing
+
+79
+00:11:32,783 --> 00:11:40,556
+and organizing a meeting and share that link
+with me. So once I share my schedule with you,
+
+80
+00:11:40,976 --> 00:11:50,782
+you can allocate a time for your own team. And
+that time slot is fixed for all the meetings.
+
+81
+00:11:51,562 --> 00:12:00,347
+And yeah, what else? So yeah, in these kind
+of meetings, we are going to discuss about
+
+82
+00:12:00,367 --> 00:12:08,332
+how you have been able to do this. plan the
+next meeting what you have done in the previous
+
+83
+00:12:08,572 --> 00:12:16,656
+meeting. So to facilitate that I think a GitHub
+reports will be created. Today hopefully I
+
+84
+00:12:16,676 --> 00:12:24,320
+will try to create the groups for each and every
+team. Yeah that's the information I want to
+
+85
+00:12:24,360 --> 00:12:30,944
+share with you guys. So if you have any questions
+regarding that or any
+
+86
+00:12:34,114 --> 00:12:42,944
+going to be how this journey is going to be.
+Just let me know and anything you need to clarify
+
+87
+00:12:43,044 --> 00:12:44,525
+I'm happy to help. Thank you.
+
+88
+00:12:50,530 --> 00:12:58,253
+Um, so when you said the meeting, is it, is
+it next week? We're supposed to have availability
+
+89
+00:12:58,273 --> 00:13:04,416
+with you or is it a week after? Because it's
+a, it's a bi-weekly, right? Yes. Bi-weekly
+
+90
+00:13:04,576 --> 00:13:12,959
+one. Uh, I hope, uh, as for the calendar in
+the homepage, I think it's, it will start on,
+
+91
+00:13:14,400 --> 00:13:21,719
+uh, fourth week on what the beginning of the
+spring one. Uh, In there, you have to submit
+
+92
+00:13:21,879 --> 00:13:27,383
+the initial report as well as the snapshot 1.1,
+if I'm correct, yes, right? Yep, that's really
+
+93
+00:13:27,443 --> 00:13:36,109
+good. Yes, I need to confirm that whether it's
+starting from 12 August onward, that we can
+
+94
+00:13:36,149 --> 00:13:43,874
+have the meetings, or else it would be 19th
+August. I hope it's 12th. So I just need to
+
+95
+00:13:43,914 --> 00:13:52,831
+confirm that with Dr. Amali. Yeah. Okay. Yeah,
+because the so the initial report is due on
+
+96
+00:13:53,452 --> 00:14:01,215
+the Sunday 18th, right? So that's it'll be before
+the initial report then is due. Um, I'm not
+
+97
+00:14:01,255 --> 00:14:11,280
+pretty sure about the deadline of it, uh, because.
+Yeah, just need to. Yep. I'm not pretty sure
+
+98
+00:14:11,300 --> 00:14:14,121
+about that. Just let me check. Yeah, that's
+okay.
+
+99
+00:14:19,482 --> 00:14:28,328
+Yeah. Up to now I couldn't find the place of
+where it's mentioned as the deadline. Yeah.
+
+100
+00:14:28,588 --> 00:14:34,072
+I will once it is, once I found that I will
+share the information with you. That's good.
+
+101
+00:14:34,112 --> 00:14:35,573
+Thank you.
+
+102
+00:14:40,275 --> 00:14:40,845
+Anything else?
+
+103
+00:14:46,934 --> 00:14:58,100
+Hi, is there going to be data provided to us?
+I hope. Up to now, there's no file shared with
+
+104
+00:14:58,200 --> 00:15:04,243
+me, but I can have a chat with the client and
+let you know. But up to now, you can initiate
+
+105
+00:15:04,323 --> 00:15:08,825
+with some freely available resources, right?
+Yeah, all right, thanks.
+
+106
+00:15:27,122 --> 00:15:29,040
+And anyone else? Any other questions?
+
+107
+00:15:36,150 --> 00:15:41,831
+I do have a quick question. I'm not too sure
+if they answered this in the kickoff meeting,
+
+108
+00:15:41,871 --> 00:15:51,554
+but in the actual document, it says the input
+file. There's nothing else is known about the
+
+109
+00:15:51,594 --> 00:15:57,016
+content of the input file. It's only known that
+it's a human voice. We can assume it's still
+
+110
+00:15:57,216 --> 00:16:03,731
+English, right? We don't have to do any other
+languages. Good question. Yeah, let's assume
+
+111
+00:16:04,051 --> 00:16:08,416
+for the time being it's coming in English. Yeah,
+again.
+
+112
+00:16:18,290 --> 00:16:27,157
+I got one more question. When it says we are
+using Azure for the actual codec, do we in
+
+113
+00:16:27,197 --> 00:16:32,902
+the group have to ever use it or is it just
+during demos and the final, it's just running
+
+114
+00:16:32,962 --> 00:16:41,309
+on it? Yes, I've known this, the thing is, sorry,
+Dylan, right? So the thing is you have to come
+
+115
+00:16:41,369 --> 00:16:50,467
+up with a demonstration kind of thing in each.
+meeting not at the initial meeting but afterwards
+
+116
+00:16:50,887 --> 00:16:57,669
+it's better to come up with some demonstration
+on what you what you have done so far. That's
+
+117
+00:16:57,709 --> 00:17:03,431
+how it's going right. And when it comes to a
+sprint meeting, sprint planning you're showing
+
+118
+00:17:03,851 --> 00:17:09,132
+the client that this kind of thing has done
+and getting the feedback and based on that
+
+119
+00:17:09,152 --> 00:17:15,238
+feedback you are trying to improve your product
+right. So I think we can follow the same practice
+
+120
+00:17:15,279 --> 00:17:25,865
+here, like we did last time. So yes, it's better
+if you can come up with some, up to some level,
+
+121
+00:17:25,925 --> 00:17:32,488
+if you can come up with the product that can
+demonstrate. So that would be great, yes. Super.
+
+122
+00:17:45,054 --> 00:17:45,580
+Anyone else?
+
+123
+00:18:02,850 --> 00:18:13,298
+Yeah, I just wondering, is this just a free-for-all?
+We're not going to get any guidance to how
+
+124
+00:18:13,338 --> 00:18:20,284
+we incorporate the AI into this codec? Or will
+there be more resources down the line with
+
+125
+00:18:21,425 --> 00:18:28,250
+how about they expect us to do this? Oh, you
+mean like, should we focus on the deadlines
+
+126
+00:18:28,451 --> 00:18:36,401
+or should we focus on the product completing
+the product, you say? Um, I not, not necessarily.
+
+127
+00:18:36,601 --> 00:18:43,407
+Um, I guess. Yeah. I, well with like how sprint
+is set up, like you just have to have a working
+
+128
+00:18:43,467 --> 00:18:48,251
+thing. It doesn't really matter how up to how
+complete it is. You just have to have something
+
+129
+00:18:48,271 --> 00:18:55,216
+that works by the time the sprint. Um, happens.
+Yeah. If you, if you are interested in the
+
+130
+00:18:55,357 --> 00:19:02,382
+competition that, uh, the, the competition information
+shared by a map tech. And if you are targeting
+
+131
+00:19:02,422 --> 00:19:09,828
+that it's better to, you know, completing the
+product while meeting your deadlines. If you're
+
+132
+00:19:10,209 --> 00:19:16,494
+really focusing on, but anyway, it's encouraged
+to come up with the complete product at the
+
+133
+00:19:16,534 --> 00:19:23,760
+end, right? Because we are, we are doing as
+a project. So it's, it's better to complete
+
+134
+00:19:23,920 --> 00:19:30,145
+as much as possible, which means like some tangible
+product that we need. So.
+
+135
+00:19:33,163 --> 00:19:43,472
+I would suggest have a proper plan at the initial
+stage because this is the right time to discuss
+
+136
+00:19:43,492 --> 00:19:49,857
+with your teammates and identify each and everyone's
+skills and if you are lacking some resources
+
+137
+00:19:49,917 --> 00:19:57,083
+try to educate them or try to give them some
+guidance like those who have the knowledge
+
+138
+00:19:58,044 --> 00:20:07,323
+share that in between. Try to plan properly
+using this couple of days and from there onwards
+
+139
+00:20:07,423 --> 00:20:15,990
+it will be easier for you to like with a less
+struggle on completing the product and meeting
+
+140
+00:20:16,030 --> 00:20:24,777
+the deadlines. So I would suggest to you know
+come up with a proper plan after discussing
+
+141
+00:20:25,058 --> 00:20:34,649
+with your teammates. Try to write the user stories
+from here onwards after eliciting all the requirements
+
+142
+00:20:34,669 --> 00:20:40,628
+that currently have been provided. Did I answer
+your question?
+
+143
+00:20:44,592 --> 00:20:46,439
+I think, yeah, that was, yeah. All right.
+
+144
+00:20:54,752 --> 00:20:55,370
+Anything else?
+
+145
+00:20:59,354 --> 00:21:06,918
+Sorry, I keep asking questions. Okay, that's
+okay. That's why the session is for. Yes. So,
+
+146
+00:21:06,978 --> 00:21:15,262
+you know, we do, they do mention like the super-illuminal
+communication aspect of it. How important,
+
+147
+00:21:15,303 --> 00:21:22,727
+because it's like, it's not really in the project
+itself that like we have to do, well, the compression
+
+148
+00:21:22,767 --> 00:21:28,414
+part, but in the actual reporting, do we have
+to like reference it a lot? Like, oh. do the
+
+149
+00:21:28,454 --> 00:21:37,198
+super luminal communication, we have to do the
+compression. Like, do we, because even in like
+
+150
+00:21:37,258 --> 00:21:43,121
+the user stories you provide, it's not really
+mentioned, the like the super luminal communication.
+
+151
+00:21:43,181 --> 00:21:49,584
+I just want to know how important it is to like
+put that to the forefront, you know? Yeah,
+
+152
+00:21:50,344 --> 00:21:57,812
+let's figure it out like this. So. The story
+behind this project is what I explained at
+
+153
+00:21:57,872 --> 00:22:04,737
+the very beginning of my presentation. Right.
+And that is what the story shared by Professor
+
+154
+00:22:05,057 --> 00:22:14,964
+Simon as well. Underneath such a concept or
+such a solution, there could be multiple usages.
+
+155
+00:22:15,024 --> 00:22:24,126
+Right. Yeah. Not this one, but you know, for
+our day-to-day activities, there could be some
+
+156
+00:22:24,266 --> 00:22:34,051
+more usages starting from a solution like this.
+Yeah. So let's focus on that part rather than,
+
+157
+00:22:34,752 --> 00:22:42,336
+you know, coming up with like, going to the
+extreme level and saying this superluminant
+
+158
+00:22:42,376 --> 00:22:48,319
+communication. Like, it's like the additional
+information that you have provided on the project.
+
+159
+00:22:48,339 --> 00:22:56,811
+Yeah. Right? So it's like, I'll tell you. Yes,
+so we are trying to reach that level. But up
+
+160
+00:22:56,851 --> 00:23:05,062
+to now, we are starting from a very low level
+and try to build up the product from a very
+
+161
+00:23:05,863 --> 00:23:16,647
+low level and try to build up on top of that.
+Okay, that makes sense, yeah. Yeah, so it's
+
+162
+00:23:16,687 --> 00:23:22,973
+really just like, it's not really the forefront
+of the actual project. It's just kind of like
+
+163
+00:23:23,074 --> 00:23:29,640
+motivation, kind of like, oh, that's where we're
+heading. But right now we're here. Okay. Some
+
+164
+00:23:29,680 --> 00:23:30,921
+sort of thing. Yes. Yeah.
+
+165
+00:23:37,938 --> 00:23:40,733
+Anyone else? Do you have any other questions?
+
+166
+00:23:58,262 --> 00:24:08,524
+right. If you have further questions just feel
+free to reach me. I think my email is provided
+
+167
+00:24:08,604 --> 00:24:20,848
+in the homepage so you can directly email me
+or I'll try to create the groups today. I hope
+
+168
+00:24:20,968 --> 00:24:32,335
+I have received the Teams access since I don't
+have in I'll try to create those groups. And
+
+169
+00:24:32,555 --> 00:24:37,280
+from there onwards, you can use those channels
+to communicate with me, clarify your doubts,
+
+170
+00:24:37,901 --> 00:24:44,969
+and share your meeting links and everything.
+You can use those groups. Yeah, if we don't
+
+171
+00:24:45,029 --> 00:24:49,013
+have further questions, we can wind up from
+here.
+
+172
+00:24:53,998 --> 00:24:57,802
+That'd be good. I'm all good if everyone else
+is.
+
+173
+00:25:03,278 --> 00:25:09,949
+Thank you. All right then. Thanks everyone for
+joining today. See you in upcoming meetings.
+
+174
+00:25:09,969 --> 00:25:11,731
+Good luck. Thank you.
+

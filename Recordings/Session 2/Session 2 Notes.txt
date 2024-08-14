@@ -1,0 +1,6 @@
+NOTES:
+•	Measurement criteria is based on:
+	-	compression = (1 - sizeInBytes("payload.bin")) / (sizeInBytes("input.wav")) * 100%
+•	'Sprint' Meetings will occur fortnightly(every 2 weeks), beginning 19 Aug.
+•	All weekly scrums, meetings, etc must be document starting 12 Aug.
+•	Questions asked in Teams chat, email correspondence, meetings or calls CAN BE USED FOR REPORT section Q&A.

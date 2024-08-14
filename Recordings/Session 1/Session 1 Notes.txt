@@ -1,0 +1,19 @@
+FIRST TUTOR SESSION PURPOSE:
+
+1.	Gain better understanding of the project
+2.	Plan the work ahead (Sprint planning)
+3.	Setting up project tools (i.e. git repo)
+
+
+NOTES:
+•	Allowed to use existing techniques for compression (i.e. ML Models, MP3, etc.)
+•	No interface required. Command line is sufficient.
+	○	`name --encode < input.wav > payload.bin`
+	○	`name --decode < payload.bin > output.wav`
+•	We need to make a meeting (Zoom/Teams) and send link to our tutor, Ruvishka (share in Teams, email, link in excel)
+•	First session - sprint X planning component ONLY; Second session onwards - Sprint X-1 retrospective & sprint X planning.
+	○	Retrospective - Cover backlog, completed tasks (what we have done), topics discussed in other meetings
+		(Used to catch her up on what's happened since the last sprint meeting session)
+	○	Planning - 
+•	We may create other user stories, trying to create our own backlog(tasks to do), not just waiting for Ruvishka to provide them.
+	(She is supposed to provide backlog to us. Though advised to make our own as well)
