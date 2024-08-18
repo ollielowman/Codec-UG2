@@ -1,12 +1,16 @@
 # Codec-UG2
 
-*This CODEC is designed to run on MS Azure linux images.*
+*This CODEC was designed on ubuntu, designed to run with MS Azure linux images.*
 
 **Libraries**
 - `librosa` - Please install `librosa` before running the program.
-  - For system-wide install:  `sudo python3 -m pip install librosa`
   - For *Anaconda* or *miniconda* install:  `conda install -c conda-forge librosa`
-
+  - Otherwise, please follow the followin steps:
+    - Change directory to where you would like to create a environment.
+    - Create the environment with `python3 -m venv <environment_name>`
+    - Activate the environment with `source <environment_name>/bin/activate`
+    - Finally, install `librosa` with `pip install librosa`
+ 
 Run the file using the following command in CLI:
 
 **For encoding**
