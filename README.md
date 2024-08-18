@@ -2,6 +2,8 @@
 
 **Libraries**
 - `librosa` - Please install `librosa` before running the program.
+- For system-wide install:  `sudo python3 -m pip install librosa`
+- For *Anaconda* or *miniconda* install:  `conda install -c conda-forge librosa`
 
 Run the file using the following command in CLI:
 
