@@ -1,5 +1,7 @@
 # Codec-UG2
 
+*This CODEC is designed to run on MS Azure linux images.*
+
 **Libraries**
 - `librosa` - Please install `librosa` before running the program.
   - For system-wide install:  `sudo python3 -m pip install librosa`
