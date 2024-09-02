@@ -78,7 +78,7 @@ def inputSanityCheck(encode, decode):
             else:
                 logging.info('File provided is empty!')
 
-            # print(bin_data)
+            print(bin_data)
             return is_encode, None, None, bin_data
         
         except FileNotFoundError:
