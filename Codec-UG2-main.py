@@ -1,94 +1,126 @@
 import argparse
+import scipy.io.wavfile as wavfile
+from scipy.io.wavfile import WavFileWarning
+import warnings
+import logging
 import sys
-import librosa
+import os
+import io
+
+# removing the root option while logging 
+logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+
+# supress scipy warnings
+warnings.filterwarnings("ignore", category=WavFileWarning)
 
 """
-    The function takes the path of the file provided by the user and checks whether it is a valid path
+    The function takes the bool variable encode and decode and loads the data accordingly
     
     Args:
-        audio_wav_file: The path of the input file that the user wants to compress
-        output_bin_file: The path of the binary file that the user wants to decompress
+        encode: Argument to tell if we are encoding 
+        decode: Argument to tell if we are decoding
     Return:
         is_encode: boolean value to tell whether the user wants to compress or decompress
         audio_data: loaded audio file
         audio_frame_rate: frame rates of the audio file provided
         bin_file: loaded binary file
 """
-def inputSanityCheck(audio_wav_file, output_bin_file):
+def inputSanityCheck(encode, decode):
+    # bool flag to check if we are encoding or decoding
     is_encode = True
     
     # that the user has provided either .wav file or .bin file
-    if audio_wav_file is None and output_bin_file is None:
-        print('Input error: Please provide either the .wav file to compress or .bin file to decompress as an input!', file=sys.stderr)
+    if not encode and not decode:
+        logging.error('Please provide only one input file: .wav file to compress or .bin file to decompress')
         sys.exit(1)
-    # the user has only provided either .wav file or .bin file as an input
-    elif audio_wav_file is not None and output_bin_file is not None:
-        print('Input error: Please provide either the .wav file to compress or .bin file to decompress as an input but not both!', file=sys.stderr)
+    
+    # the user has only provided either .wav file or .bin file as an input        
+    if encode and decode:
+        logging.error('Please provide only one input file: .wav file to compress or .bin file to decompress')
         sys.exit(1)
     
     # checking if the user wants to compress or decompress and setting a flag variable
-    if output_bin_file is not None:
+    if decode:
         is_encode = False
     
-    # checking if the file provided is a .wav file or .bin file
-    if is_encode == True and audio_wav_file[-4:] != '.wav':
-        print('Filetype error: Please provide a .wav file as an input!', file=sys.stderr)
-        sys.exit(1)
-    elif is_encode == False and output_bin_file[-4:] != '.bin':
-        print('Filetype error: Please provide a .bin file as an input!', file=sys.stderr)
-        sys.exit(1)
-    
     # loading the .wav file 
-    if is_encode == True:
-        try:    
+    if is_encode:
+        try:
             # loading the file at the original sampling rate
-            audio_data, audio_frame_rate = librosa.load(audio_wav_file, sr=None) 
+            # changing the library to scipy as librosa does not support binary data as an import
+            audio_wav_file_binary_data = sys.stdin.buffer.read()
+            audio_frame_rate, audio_data = wavfile.read(io.BytesIO(audio_wav_file_binary_data))
             
             # error checking to see if the audio file is loaded correctly
             if audio_data is not None and len(audio_data) > 0:
-                print(audio_wav_file + ' loaded successfully!', file=sys.stderr)
+                logging.info('Successfully loaded!')
             else:  
-                print(audio_wav_file + ' is an empty file!', file=sys.stderr)
+                logging.info('File provided is empty!')
             
-            return is_encode, audio_data, audio_frame_rate
+            # print(audio_data)
+            return is_encode, audio_data, audio_frame_rate, None
         
         except FileNotFoundError:
-            print('Input error: ' + audio_wav_file + ' does not exist!', file=sys.stderr)
-        except:
-            print('File load error: there was an error loading the file!', file=sys.stderr)
+            logging.error('File does not exist!')
+            sys.exit(1)
+        except Exception as e:
+            logging.error('There was an error loading the file')
+            logging.error('Details: ', e)
+            sys.exit(1)
     
     # loading the .bin file
     else:
         try:
-            with open(output_bin_file, 'rb') as bin_file:
-                bin_data = bin_file.read()
+            bin_data = sys.stdin.buffer.read()
                 
-                if bin_data:
-                    print(output_bin_file + ' loaded successfully!', file=sys.stderr)
-                else:
-                    print(output_bin_file + ' is an empty file!', file=sys.stderr)
+            if bin_data:
+                logging.info('Successfully loaded!')
+            else:
+                logging.info('File provided is empty!')
 
-                return is_encode, output_bin_file
+            # print(bin_data)
+            return is_encode, None, None, bin_data
         
         except FileNotFoundError:
-            print('Input error: ' + output_bin_file + ' does not exist!', file=sys.stderr)
-        except:
-            print('File load error: there was an error loading the file!', file=sys.stderr)
+            logging.error('File does not exist!')
+            sys.exit(1)
+        except Exception as e:
+            logging.error('There was an error loading the file')
+            logging.error('Details: ', e)
+            sys.exit(1)
+            
+
+"""
+    The function takes the audio frame rate and audio file data and save it in .wav
+    
+    Args:
+        audio_frame_rate: frame rate of the input audio data
+        decode: data loaded from the input audio file
+"""    
+def save_audio_data(audio_frame_rate, audio_data):
+    try:
+        wavfile.write(sys.stdout.buffer, audio_frame_rate, audio_data)
+        logging.info("Audio data successfully written to output file")
+    except Exception as e:
+        logging.error('There was an error writing the file')
+        logging.error('Details: ', e)
+        sys.exit(1)
 
 if __name__ == '__main__':
     # setting the argument parser to check whether the user wants to encode or decode a file and the path of the input file
     # use the input .wav file as args.encode and the input .bin file as args.decode
     parser = argparse.ArgumentParser()
-    parser.add_argument('--encode', type=str, nargs='?',
-                        help='Enter the path of a .wav file you want to compress')
-    parser.add_argument('--decode', type=str, nargs='?',
-                        help='Enter the path of a .bin file you want to decompress')
+    parser.add_argument('--encode', action='store_true',
+                        help='Use this to show that you need to compress the file')
+    parser.add_argument('--decode', action='store_true',
+                        help='Use this to show that you need to decompress the file')
     args = parser.parse_args()
-
-    #pass first/second test in Maptek-Hello World
-    print("Hello World")
-
-    # input file error checking
-    #comment out function call below to pass test 1 and 2
-    inputSanityCheck(audio_wav_file=args.encode, output_bin_file=args.decode)
     
+    # input file error checking 
+    is_encode, audio_data, audio_frame_rate, bin_data = inputSanityCheck(encode=args.encode, decode=args.decode)
+    
+    # loads the same file as a separate audio file given using CLI to check if it has been loaded correctly
+    if os.isatty(sys.stdout.fileno()): # if > is not provided in the terminal
+        logging.error("Output stream not provided!")
+    elif is_encode and audio_data is not None and audio_frame_rate is not None:
+        save_audio_data(audio_frame_rate, audio_data)
