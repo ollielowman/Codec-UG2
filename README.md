@@ -1,15 +1,11 @@
 # Codec-UG2
 
-*This CODEC was designed on ubuntu, designed to run with MS Azure linux images.*
+*This CODEC was designed on ubuntu, using python 3.12.4, to run with Ubuntu & MS Azure linux images, in Anaconda, Miniconda or python venv environments*
 
-**Libraries**
-- `scipy` - Please install `scipy` before running the program.
-  - For *Anaconda* or *miniconda* install:  `conda install scipy`
-  - Otherwise, please follow the following steps:
-    - Change directory to where you would like to create a environment.
-    - Create the environment with `python3 -m venv <environment_name>`
-    - Activate the environment with `source <environment_name>/bin/activate`
-    - Finally, install `scipy` with `pip install scipy`
+**Dependencies Installation**
+- For the purpose of streamlining dependency installation, setup scripts have been included for both OPUS and FLAC codecs.
+- To install dependencies, run the command `python3 setup-<Codec>.py` in your CLI, replacing `<Codec>` with either `OPUS` or `FLAC`.
+- _Note:  Dependencies have been pre-downloaded into their respective dependency directories to facilitate offline installation._
  
 Run the file using the following command in CLI:
 
