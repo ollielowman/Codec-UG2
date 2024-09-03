@@ -1,0 +1,39 @@
+Collecting scipy
+  File was already downloaded /home/kirisan/Documents/Codec-UG2/dependencies-FLAC/scipy-1.14.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+Collecting pyflac
+  File was already downloaded /home/kirisan/Documents/Codec-UG2/dependencies-FLAC/pyFLAC-3.0.0.tar.gz
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting numpy<2.3,>=1.23.5 (from scipy)
+  File was already downloaded /home/kirisan/Documents/Codec-UG2/dependencies-FLAC/numpy-2.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+Collecting cffi>=1.4.0 (from pyflac)
+  File was already downloaded /home/kirisan/Documents/Codec-UG2/dependencies-FLAC/cffi-1.17.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+Collecting SoundFile>=0.11 (from pyflac)
+  File was already downloaded /home/kirisan/Documents/Codec-UG2/dependencies-FLAC/soundfile-0.12.1-py2.py3-none-manylinux_2_31_x86_64.whl
+Collecting pycparser (from cffi>=1.4.0->pyflac)
+  File was already downloaded /home/kirisan/Documents/Codec-UG2/dependencies-FLAC/pycparser-2.22-py3-none-any.whl
+Successfully downloaded scipy pyflac cffi numpy SoundFile pycparser
+Looking in links: dependencies-FLAC
+Processing ./dependencies-FLAC/scipy-1.14.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+Collecting pyflac
+  Using cached pyFLAC-3.0.0-cp312-cp312-linux_x86_64.whl
+Processing ./dependencies-FLAC/numpy-2.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from scipy)
+Processing ./dependencies-FLAC/cffi-1.17.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from pyflac)
+Processing ./dependencies-FLAC/soundfile-0.12.1-py2.py3-none-manylinux_2_31_x86_64.whl (from pyflac)
+Processing ./dependencies-FLAC/pycparser-2.22-py3-none-any.whl (from cffi>=1.4.0->pyflac)
+Installing collected packages: pycparser, numpy, scipy, cffi, SoundFile, pyflac
+Successfully installed SoundFile-0.12.1 cffi-1.17.0 numpy-2.1.0 pycparser-2.22 pyflac-3.0.0 scipy-1.14.1
+Downloading dependencies...
+=====================================
+Dependencies downloaded successfully!
+=====================================
+
+
+Installing dependencies...
+=====================================
+Dependencies installed successfully!
+=====================================
