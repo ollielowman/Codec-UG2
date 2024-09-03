@@ -1,0 +1,38 @@
+Collecting scipy
+  Using cached scipy-1.14.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+Collecting opuslib
+  Using cached opuslib-3.0.1.tar.gz (8.6 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting numpy<2.3,>=1.23.5 (from scipy)
+  Using cached numpy-2.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+Using cached scipy-1.14.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (40.8 MB)
+Using cached numpy-2.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.0 MB)
+Saved ./dependencies-OPUS/scipy-1.14.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+Saved ./dependencies-OPUS/opuslib-3.0.1.tar.gz
+Saved ./dependencies-OPUS/numpy-2.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+Successfully downloaded scipy opuslib numpy
+Looking in links: dependencies-OPUS
+Processing ./dependencies-OPUS/scipy-1.14.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+Processing ./dependencies-OPUS/opuslib-3.0.1.tar.gz
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Processing ./dependencies-OPUS/numpy-2.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from scipy)
+Building wheels for collected packages: opuslib
+  Building wheel for opuslib (setup.py): started
+  Building wheel for opuslib (setup.py): finished with status 'done'
+  Created wheel for opuslib: filename=opuslib-3.0.1-py3-none-any.whl size=12563 sha256=d9f1d2fe8c72b6f7bddbc80e6b10506c57aafa47b78fa236396918ceb27ec4aa
+  Stored in directory: /home/kirisan/.cache/pip/wheels/81/ad/9e/77c7773e42f15134db5bcd28970b0fb11a37d0bb848b4426f7
+Successfully built opuslib
+Installing collected packages: opuslib, numpy, scipy
+Successfully installed numpy-2.1.0 opuslib-3.0.1 scipy-1.14.1
+Downloading dependencies...
+=====================================
+Dependencies downloaded successfully!
+=====================================
+
+
+Installing dependencies...
+=====================================
+Dependencies installed successfully!
+=====================================
