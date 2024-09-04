@@ -13,10 +13,6 @@
  
 Run the file using the following command in CLI:
 
-**For encoding**
+**Running the file**
 
-`python Codec-UG2-main.py --encode < dataset/input.wav` should load the file successfully. To check if the input audio file is being loaded correctly, use the command `python Codec-UG2-main.py --encode < dataset/input.wav > dataset/output.wav`. This would create a new audio file in the `dataset` folder. You can play both input and output audio files to verify they sound the same and the code loads and saves the files correctly using `<` and `>` tokens in CLI.
-
-**For decoding**
-
-`python Codec-UG2-main.py --decode < dataset/payload.bin` and this would display the contents of `payload.bin` in the terminal. You can verify by checking the file to the terminal output to confirm that the load has happened successfully.
+`python Codec-UG2-main.py --encode < dataset/input.wav > dataset/payload.bin` should load the file successfully. To check if the input audio file is being loaded correctly, use the command `python Codec-UG2-main.py --decode < dataset/payload.bin > dataset/output.wav`. This would create a new audio file in the `dataset` folder. You can play both input and output audio files to verify they sound the same and the code loads and saves the files correctly using `<` and `>` tokens in CLI. Make sure to run the `decode` command after the `encode` command for it to work.
