@@ -1,6 +1,7 @@
 import argparse
 import scipy.io.wavfile as wavfile
 from scipy.io.wavfile import WavFileWarning
+import numpy as np
 import warnings
 import logging
 import sys
@@ -78,8 +79,10 @@ def inputSanityCheck(encode, decode):
             else:
                 logging.info('File provided is empty!')
 
-            print(bin_data)
-            return is_encode, None, None, bin_data
+            audio_data = np.frombuffer(bin_data, dtype=np.int16) # converting to 16-bit PCM data for now
+            audio_frame_rate = 44100 # to be changed based on the algorithm
+
+            return is_encode, audio_data, audio_frame_rate, bin_data
         
         except FileNotFoundError:
             logging.error('File does not exist!')
@@ -95,11 +98,27 @@ def inputSanityCheck(encode, decode):
     
     Args:
         audio_frame_rate: frame rate of the input audio data
-        decode: data loaded from the input audio file
+        audio_data: data loaded from the input audio file
 """    
 def save_audio_data(audio_frame_rate, audio_data):
     try:
         wavfile.write(sys.stdout.buffer, audio_frame_rate, audio_data)
+        logging.info("Audio data successfully written to output file")
+    except Exception as e:
+        logging.error('There was an error writing the file')
+        logging.error('Details: ', e)
+        sys.exit(1)
+
+
+"""
+    The function takes the audio file data and save it in .bin
+    
+    Args:
+        audio_data: data loaded from the input audio file
+"""    
+def save_audio_as_binary(audio_data):
+    try:
+        sys.stdout.buffer.write(audio_data.tobytes())
         logging.info("Audio data successfully written to output file")
     except Exception as e:
         logging.error('There was an error writing the file')
@@ -122,5 +141,8 @@ if __name__ == '__main__':
     # loads the same file as a separate audio file given using CLI to check if it has been loaded correctly
     if os.isatty(sys.stdout.fileno()): # if > is not provided in the terminal
         logging.error("Output stream not provided!")
-    elif is_encode and audio_data is not None and audio_frame_rate is not None:
+    elif is_encode and audio_data is not None:
+        save_audio_as_binary(audio_data)
+    elif not is_encode and audio_data is not None and audio_frame_rate is not None:
         save_audio_data(audio_frame_rate, audio_data)
+
