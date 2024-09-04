@@ -119,7 +119,7 @@ def save_audio_data(audio_frame_rate, audio_data):
 def save_audio_as_binary(audio_data):
     try:
         sys.stdout.buffer.write(audio_data.tobytes())
-        logging.info("Audio data successfully written to output file")
+        logging.info("Binary data successfully written to output file")
     except Exception as e:
         logging.error('There was an error writing the file')
         logging.error('Details: ', e)
