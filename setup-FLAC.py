@@ -18,6 +18,7 @@ def download_dependencies():
                 "dependencies-FLAC",
                 "scipy",
                 "pyflac",
+                "librosa",
             ]
         )
         print(
@@ -45,6 +46,7 @@ def install_dependencies():
                 "dependencies-FLAC",
                 "scipy",
                 "pyflac",
+                "librosa",
             ]
         )
         print(
@@ -57,9 +59,8 @@ def install_dependencies():
 
 
 def main():
-    print("Downloading dependencies...")
+    # Downloading & install the dependencies by calling the script "setup-FLAC.py"
     download_dependencies()
-    print("\n\nInstalling dependencies...")
     install_dependencies()
 
 

@@ -1,6 +1,6 @@
 import argparse
 import sys
-import librosa
+import subprocess
 
 """
     The function takes the path of the file provided by the user and checks whether it is a valid path
@@ -76,6 +76,14 @@ def inputSanityCheck(audio_wav_file, output_bin_file):
             print('File load error: there was an error loading the file!')
 
 if __name__ == '__main__':
+    # Downloading & install the dependencies by calling the script "setup-FLAC.py"
+    try:
+        subprocess.check_call([sys.executable, "setup-FLAC.py"])
+    except subprocess.CalledProcessError as e:
+        print("Error installing dependencies:\t", e)
+
+    import librosa
+
     # setting the argument parser to check whether the user wants to encode or decode a file and the path of the input file
     # use the input .wav file as args.encode and the input .bin file as args.decode
     parser = argparse.ArgumentParser()
@@ -84,7 +92,6 @@ if __name__ == '__main__':
     parser.add_argument('--decode', type=str, nargs='?',
                         help='Enter the path of a .bin file you want to decompress')
     args = parser.parse_args()
-    
-    # input file error checking 
+
+    # input file error checking
     inputSanityCheck(audio_wav_file=args.encode, output_bin_file=args.decode)
-    
