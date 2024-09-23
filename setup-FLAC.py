@@ -19,6 +19,8 @@ def download_dependencies():
                 "scipy",
                 "pyflac",
                 "librosa",
+                "setuptools",
+                "wheel"
             ]
         )
         print(
@@ -47,6 +49,8 @@ def install_dependencies():
                 "scipy",
                 "pyflac",
                 "librosa",
+                "setuptools",
+                "wheel"
             ]
         )
         print(
