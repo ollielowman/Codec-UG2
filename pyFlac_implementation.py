@@ -16,7 +16,13 @@ import pyflac
                               write audio data to .wav file using soundfile
     
     Issues with Code:
-     * after encoding doesn't write encoded data into a .bin file  
+     * after encoding doesn't write encoded data into a .bin file (next sprint)  
+     
+    Improvements for later:
+     *look into actual pyflac encoder/decoder to improve compression algorithm
+        *change sample rate within the source encoder/decoder- goal halve sample rate
+        *make more lossy to fit needs
+            *maybe something changes in the callback function too
                        
                      
 """
@@ -48,7 +54,8 @@ class FlacCodec:
         self.encoder=pyflac.StreamEncoder(
             write_callback=self.encoder_callback,
             sample_rate=self.sample_rate,
-            blocksize=0
+            blocksize=0,
+            compression_level=5 #higher level, lower compression rate
         )
 
         ##initialises decoder using decoder_callback function
@@ -80,6 +87,7 @@ class FlacCodec:
                          current_frame:int):
         self.all_bytes += num_bytes
         self.queue.put(buffer)
+
 
 
     #function to write encoded audio_data into a .wav file
@@ -118,7 +126,9 @@ if __name__=='__main__':
 
     #calculates compression rate
     compression_rate=codec.all_bytes/codec.data.nbytes*100
+    print(f"Sample rate: {codec.sample_rate}")
+        #vary sample rate
 
     #prints that Codec works and what the compression rate is
     print("Codec Works", file=sys.stderr)
-    print(f"Compression rate={compression_rate:.2f}%")
+    print(f"Compression rate={compression_rate:.2f}%", file=sys.stderr)
