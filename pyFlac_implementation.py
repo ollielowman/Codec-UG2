@@ -131,4 +131,4 @@ if __name__=='__main__':
 
     #prints that Codec works and what the compression rate is
     print("Codec Works", file=sys.stderr)
-    print(f"Compression rate={compression_rate:.2f}%", file=sys.stderr)
+    print(f"Compression={compression_rate:.2f}%", file=sys.stderr)
