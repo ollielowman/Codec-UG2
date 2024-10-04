@@ -26,10 +26,11 @@ def download_dependencies():
         print(
             "=====================================\n"
             + "Dependencies downloaded successfully!\n"
-            + "====================================="
+            + "=====================================",
+            file=sys.stderr
         )
     except subprocess.CalledProcessError as e:
-        print("Error installing dependencies:\t", e)
+        print("Error installing dependencies:\t", e, file=sys.stderr)
 
 
 def install_dependencies():
@@ -56,10 +57,10 @@ def install_dependencies():
         print(
             "=====================================\n"
             + "Dependencies installed successfully!\n"
-            + "====================================="
+            + "=====================================", file=sys.stderr
         )
     except subprocess.CalledProcessError as e:
-        print("Error installing dependencies:\t", e)
+        print("Error installing dependencies:\t", e, file=sys.stderr)
 
 
 def main():
