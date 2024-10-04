@@ -1,18 +1,20 @@
 import argparse
-import scipy.io.wavfile as wavfile
-from scipy.io.wavfile import WavFileWarning
-import numpy as np
 import warnings
 import logging
 import sys
 import os
 import io
+import subprocess
 
-# removing the root option while logging 
+# removing the root option while logging
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
-# supress scipy warnings
-warnings.filterwarnings("ignore", category=WavFileWarning)
+"""
+    ISSUES TO FIX:
+        *when installing dependencies, ensure that the statements do not print into standard output
+        which would cause output files to include those print statements
+            - in commented out lines 133 to 136
+"""
 
 """
     The function takes the bool variable encode and decode and loads the data accordingly
@@ -126,6 +128,21 @@ def save_audio_as_binary(audio_data):
         sys.exit(1)
 
 if __name__ == '__main__':
+    """
+    HERE IS THE PROBLEM AREA (lines 133 to 136, commented out)
+    """
+    # try:
+    #     subprocess.check_call([sys.executable, "setup-FLAC.py"])
+    # except subprocess.CalledProcessError as e:
+    #     print("Error installing dependencies:\t", file=sys.stderr)
+
+    import scipy.io.wavfile as wavfile
+    from scipy.io.wavfile import WavFileWarning
+    import numpy as np
+    # supress scipy warnings
+    warnings.filterwarnings("ignore", category=WavFileWarning)
+    print("All libraries are there", file=sys.stderr)
+
     # setting the argument parser to check whether the user wants to encode or decode a file and the path of the input file
     # use the input .wav file as args.encode and the input .bin file as args.decode
     parser = argparse.ArgumentParser()
@@ -134,6 +151,7 @@ if __name__ == '__main__':
     parser.add_argument('--decode', action='store_true',
                         help='Use this to show that you need to decompress the file')
     args = parser.parse_args()
+
     
     # input file error checking 
     is_encode, audio_data, audio_frame_rate, bin_data = inputSanityCheck(encode=args.encode, decode=args.decode)
