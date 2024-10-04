@@ -8,6 +8,7 @@ import subprocess
 import queue
 
 from command_line_interface import *
+from Flac_Codec import *
 
 # removing the root option while logging
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
@@ -16,10 +17,10 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
 if __name__ == '__main__':
 
-    try:
-        subprocess.check_call([sys.executable, "setup-FLAC.py"])
-    except subprocess.CalledProcessError as e:
-        print("Error installing dependencies:\t", e)
+    # try:
+    #     subprocess.check_call([sys.executable, "setup-FLAC.py"])
+    # except subprocess.CalledProcessError as e:
+    #     print("Error installing dependencies:\t", e)
 
     # import scipy.io.wavfile as wavfile
     from scipy.io.wavfile import WavFileWarning
@@ -28,7 +29,7 @@ if __name__ == '__main__':
     import pyflac
 
     warnings.filterwarnings("ignore", category=WavFileWarning)
-    print("All libraries are there")
+    print("All libraries are there", file=sys.stderr)
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--encode', action='store_true',
