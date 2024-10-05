@@ -71,6 +71,8 @@ class FlacCodec:
             self.encoder.process(self.data)
             self.encoder.finish()
 
+
+
     def decode(self): #decodes audio data
         #checks if encoded queue is empty or not
         #processes audio data if not
@@ -87,6 +89,7 @@ class FlacCodec:
                          current_frame:int):
         self.all_bytes += num_bytes
         self.queue.put(buffer)
+
 
 
 
