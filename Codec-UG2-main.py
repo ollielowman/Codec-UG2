@@ -136,7 +136,7 @@ def inputSanityCheck(encode, decode):
                 logging.info('File provided is empty!')
 
             audio_data = np.frombuffer(bin_data, dtype=np.int16) # converting to 16-bit PCM data for now
-            audio_frame_rate = 44100 # to be changed based on the algorithm
+            audio_frame_rate = 22050 #44100 # to be changed based on the algorithm
 
             return is_encode, audio_data, audio_frame_rate, bin_data
         
