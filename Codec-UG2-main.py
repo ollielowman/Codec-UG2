@@ -63,80 +63,108 @@ def install_dependencies():
         except subprocess.CalledProcessError as e:
             print("Error installing dependencies:\t", e, file=sys.stderr)
 
-
 def inputSanityCheck(encode, decode):
     is_encode = True
     if not encode and not decode:
-        logging.error('Please provide only one input file: .wav file to compress or .bin file to decompress')
+        logging.error(
+            "Please provide only one input file: .wav file to compress or .bin file to decompress"
+        )
         sys.exit(1)
     if encode and decode:
-        logging.error('Please provide only one input file: .wav file to compress or .bin file to decompress')
+        logging.error(
+            "Please provide only one input file: .wav file to compress or .bin file to decompress"
+        )
         sys.exit(1)
     if decode:
         is_encode = False
+
     if is_encode:
         try:
+            # Read the binary data from stdin
             audio_wav_file_binary_data = sys.stdin.buffer.read()
+            original_wav_binary_data = audio_wav_file_binary_data
 
-            # Log WAV file headers in a separate try block
-            try:
-                with wave.open(
-                    io.BytesIO(audio_wav_file_binary_data), "rb"
-                ) as wav_file:
-                    num_channels = wav_file.getnchannels()
-                    sample_width = wav_file.getsampwidth()
-                    frame_rate = wav_file.getframerate()
-                    num_frames = wav_file.getnframes()
-                    compression_type = wav_file.getcomptype()
-                    compression_name = wav_file.getcompname()
+            # # Log WAV file headers in a separate try block
+            # try:
+            #     with wave.open(
+            #         io.BytesIO(audio_wav_file_binary_data), "rb"
+            #     ) as wav_file:
+            #         # Get header info as before...
+            #         num_channels = wav_file.getnchannels()
+            #         sample_width = wav_file.getsampwidth()
+            #         frame_rate = wav_file.getframerate()
+            #         num_frames = wav_file.getnframes()
+            #         compression_type = wav_file.getcomptype()
+            #         compression_name = wav_file.getcompname()
 
-                    # Log header information to error log
-                    logging.error("WAV File Headers:")
-                    logging.error(f"Number of Channels: {num_channels}")
-                    logging.error(f"Sample Width (bytes): {sample_width}")
-                    logging.error(f"Frame Rate (Sample Rate, Hz): {frame_rate}")
-                    logging.error(f"Number of Frames (Samples): {num_frames}")
-                    logging.error(f"Compression Type: {compression_type}")
-                    logging.error(f"Compression Name: {compression_name}")
-            except Exception as e:
-                logging.error("There was an error reading the WAV headers")
-                logging.error(f"Details (Header Read): {e}")
+            #         # Log header information to error log
+            #         logging.error("WAV File Headers:")
+            #         logging.error(f"Number of Channels: {num_channels}")
+            #         logging.error(f"Sample Width (bytes): {sample_width}")
+            #         logging.error(f"Frame Rate (Sample Rate, Hz): {frame_rate}")
+            #         logging.error(f"Number of Frames (Samples): {num_frames}")
+            #         logging.error(f"Compression Type: {compression_type}")
+            #         logging.error(f"Compression Name: {compression_name}")
+            # except Exception as e:
+            #     logging.error("There was an error reading the WAV headers")
+            #     logging.error(f"Details (Header Read): {e}")
+            #     sys.exit(1)
+
+            # Save the problematic WAV file to a temporary file
+            with tempfile.NamedTemporaryFile(
+                suffix=".wav", delete=False
+            ) as temp_wav_file:
+                temp_wav_file.write(audio_wav_file_binary_data)
+                temp_wav_path = temp_wav_file.name
+
+            # Re-encode the WAV file to ensure headers are correct
+            reencoded_wav_path = (
+                "reencoded_temp.wav"  # Output path for the re-encoded file
+            )
+
+            # Run ffmpeg command to re-encode the WAV file
+            ffmpeg_command = [
+                "ffmpeg",
+                "-i",
+                temp_wav_path,
+                "-acodec",
+                "pcm_s16le",
+                "-ar",
+                "44100",
+                "-ac",
+                "1",
+                reencoded_wav_path,
+            ]
+            result = subprocess.run(ffmpeg_command, capture_output=True, text=True)
+
+            # Check if ffmpeg succeeded
+            if result.returncode != 0:
+                logging.error(f"Error during ffmpeg encoding: {result.stderr}")
                 sys.exit(1)
 
-            audio_frame_rate, audio_data = wavfile.read(io.BytesIO(audio_wav_file_binary_data))
-            if audio_data is not None and len(audio_data) > 0:
-                logging.info('Successfully loaded!')
-            else:  
-                logging.info('File provided is empty!')
-            return is_encode, audio_wav_file_binary_data, None
+            # Now read the audio data from the re-encoded file
+            audio_frame_rate, bin_data = wavfile.read(reencoded_wav_path)
+            logging.info("Successfully loaded audio data from re-encoded WAV!")
+
+            return is_encode, original_wav_binary_data, bin_data
         except FileNotFoundError:
-            logging.error('File does not exist!')
+            logging.error("File does not exist!")
             sys.exit(1)
         except Exception as e:
-            logging.error('There was an error loading the file to encode')
+            logging.error("There was an error loading the file to encode")
             logging.error(f"Details 1: {e}")
             sys.exit(1)
     else:
         try:
             bin_data = sys.stdin.buffer.read()
-            if bin_data:
-                logging.info('Successfully loaded!')
-            else:
-                logging.info('File provided is empty!')
-
-            # Check if the length is valid for np.int16
-            if len(bin_data) % 2 != 0:
-                logging.error("Binary data size is not a multiple of 2 bytes. Adjusting...")
-                # You can either pad with zeros or truncate:
-                bin_data = bin_data[:-(len(bin_data) % 2)]  # Truncate the extra byte(s)
-
+            logging.info("Successfully loaded!")
             audio_data = np.frombuffer(bin_data, dtype=np.int16)
             return is_encode, audio_data, bin_data
         except FileNotFoundError:
-            logging.error('File does not exist!')
+            logging.error("File does not exist!")
             sys.exit(1)
         except Exception as e:
-            logging.error('There was an error loading the file to decode')
+            logging.error("There was an error loading the file to decode")
             logging.error(f"Details 2: {e}")
             sys.exit(1)
 
@@ -239,7 +267,7 @@ if __name__ == '__main__':
         logging.error("Output stream not provided!")
     elif is_encode and audio_data is not None:
         original_size = len(audio_data)  # Original WAV file size in bytes
-        encoded_data, encoded_size = encode_wav_to_opus(audio_data)
+        encoded_data, encoded_size = encode_wav_to_opus(bin_data)
         save_audio_as_binary(encoded_data)
         calculate_compression(original_size, encoded_size)
     elif not is_encode and audio_data is not None:
