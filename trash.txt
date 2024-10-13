@@ -1,0 +1,4 @@
+Looking in links: .
+Requirement already satisfied: scipy in /home/kirisan/anaconda3/envs/codec-flac/lib/python3.12/site-packages (1.14.1)
+Requirement already satisfied: opuslib in /home/kirisan/anaconda3/envs/codec-flac/lib/python3.12/site-packages (3.0.1)
+Requirement already satisfied: numpy<2.3,>=1.23.5 in /home/kirisan/anaconda3/envs/codec-flac/lib/python3.12/site-packages (from scipy) (2.1.1)
