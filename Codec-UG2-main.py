@@ -1,3 +1,7 @@
+import install_packages
+
+install_packages.install_packages()
+
 import argparse
 import warnings
 import logging
@@ -6,63 +10,14 @@ import os
 import io
 import subprocess
 import tempfile
+import scipy.io.wavfile as wavfile
+from scipy.io.wavfile import WavFileWarning
+import numpy as np
+import ffmpeg
+import opuslib
 
 # removing the root option while logging
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-
-def download_dependencies():
-    """
-    Use this function to download dependencies (For dev team only)
-    Comment out download_dependencies() when testing
-    """
-    with open("trash.txt", "w") as f:  # Redirecting output to trash.txt
-        try:
-            subprocess.check_call(
-                [
-                    sys.executable,
-                    "-m",
-                    "pip",
-                    "download",
-                    "scipy",
-                    "opuslib",  # For OPUS codec
-                    # "pyflac", # For FLAC codec
-                    # "wheel",  # For FLAC codec
-                    # "setuptools"  # For FLAC codec
-                ],
-                stdout=f,  # Redirect stdout to the file
-                stderr=f,  # Redirect stderr to the file as well
-            )
-        except subprocess.CalledProcessError as e:
-            print("Error installing dependencies:\t", e, file=sys.stderr)
-
-
-def install_dependencies():
-    """
-    This installs the downloaded dependencies
-    """
-    with open("trash.txt", "w") as f:  # Redirecting output to trash.txt
-        try:
-            subprocess.check_call(
-                [
-                    sys.executable,
-                    "-m",
-                    "pip",
-                    "install",
-                    "--no-index",
-                    "--find-links",
-                    ".",
-                    "scipy",
-                    "opuslib",  # For OPUS codec
-                    # "pyflac", # For FLAC codec
-                    # "wheel",  # For FLAC codec
-                    # "setuptools"  # For FLAC codec
-                ],
-                stdout=f,  # Redirect stdout to the file
-                stderr=f,  # Redirect stderr to the file as well
-            )
-        except subprocess.CalledProcessError as e:
-            print("Error installing dependencies:\t", e, file=sys.stderr)
-
 
 def inputSanityCheck(encode, decode):
     is_encode = True
@@ -223,13 +178,6 @@ def calculate_compression(original_size, compressed_size):
     logging.info(f"Compression: {compression:.5f}%")
 
 if __name__ == '__main__':
-    # download_dependencies()
-    install_dependencies()
-
-    import scipy.io.wavfile as wavfile
-    from scipy.io.wavfile import WavFileWarning
-    import numpy as np
-
     # supress scipy warnings
     warnings.filterwarnings("ignore", category=WavFileWarning)
 
