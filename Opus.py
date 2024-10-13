@@ -105,6 +105,10 @@ def inputSanityCheck(encode, decode):
 
 
 def encode_wav_to_opus(input_data, bitrate='16k'):
+    print("Current working directory: {0}".format(os.getcwd()), file=sys.stderr)
+    os.chdir('ffmpeg-essentials')
+    os.chdir('bin')
+
     with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as temp_wav_file:
         temp_wav_file.write(input_data)
         temp_wav_path = temp_wav_file.name
@@ -127,9 +131,16 @@ def encode_wav_to_opus(input_data, bitrate='16k'):
 
     opus_size = os.path.getsize(temp_opus_path)  # Get the size of the .opus file
     os.remove(temp_opus_path)
+
+    os.chdir("..")
+    os.chdir("..")
+
     return opus_data, opus_size
 
 def decode_opus_to_wav(input_data):
+    print("Current working directory: {0}".format(os.getcwd()), file=sys.stderr)
+    os.chdir('ffmpeg-essentials')
+    os.chdir('bin')
     with tempfile.NamedTemporaryFile(suffix='.opus', delete=False) as temp_opus_file:
         temp_opus_file.write(input_data)
         temp_opus_path = temp_opus_file.name
@@ -151,6 +162,9 @@ def decode_opus_to_wav(input_data):
         wav_data = wav_file.read()
 
     os.remove(temp_wav_path)
+
+    os.chdir("..")
+    os.chdir("..")
     return wav_data
 
 def save_audio_data(audio_data):
@@ -179,6 +193,7 @@ def calculate_compression(original_size, compressed_size):
 
 if __name__ == '__main__':
     # supress scipy warnings
+
     warnings.filterwarnings("ignore", category=WavFileWarning)
 
     parser = argparse.ArgumentParser()
