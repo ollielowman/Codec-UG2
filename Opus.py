@@ -19,89 +19,89 @@ import numpy as np
 # removing the root option while logging
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
-def inputSanityCheck(encode, decode):
-    is_encode = True
-    if not encode and not decode:
-        logging.error(
-            "Please provide only one input file: .wav file to compress or .bin file to decompress"
-        )
-        sys.exit(1)
-    if encode and decode:
-        logging.error(
-            "Please provide only one input file: .wav file to compress or .bin file to decompress"
-        )
-        sys.exit(1)
-    if decode:
-        is_encode = False
+# def inputSanityCheck(encode, decode):
+#     is_encode = True
+#     if not encode and not decode:
+#         logging.error(
+#             "Please provide only one input file: .wav file to compress or .bin file to decompress"
+#         )
+#         sys.exit(1)
+#     if encode and decode:
+#         logging.error(
+#             "Please provide only one input file: .wav file to compress or .bin file to decompress"
+#         )
+#         sys.exit(1)
+#     if decode:
+#         is_encode = False
 
-    if is_encode:
-        try:
-            audio_wav_file_binary_data = sys.stdin.buffer.read()
-            audio_frame_rate, audio_data = wavfile.read(
-                io.BytesIO(audio_wav_file_binary_data)
-            )
-            if audio_data is not None and len(audio_data) > 0:
-                logging.info("Successfully loaded!")
-            else:
-                logging.info("File provided is empty!")
-            return is_encode, audio_wav_file_binary_data, None
-        except FileNotFoundError:
-            logging.error("File does not exist!")
-            sys.exit(1)
-        except Exception as e:
-            logging.error("There was an error loading the file")
-            logging.error(f"Details 1: {e}")
+#     if is_encode:
+#         try:
+#             audio_wav_file_binary_data = sys.stdin.buffer.read()
+#             audio_frame_rate, audio_data = wavfile.read(
+#                 io.BytesIO(audio_wav_file_binary_data)
+#             )
+#             if audio_data is not None and len(audio_data) > 0:
+#                 logging.info("Successfully loaded!")
+#             else:
+#                 logging.info("File provided is empty!")
+#             return is_encode, audio_wav_file_binary_data, None
+#         except FileNotFoundError:
+#             logging.error("File does not exist!")
+#             sys.exit(1)
+#         except Exception as e:
+#             logging.error("There was an error loading the file")
+#             logging.error(f"Details 1: {e}")
 
-            # Log additional context
-            logging.error("Failed during WAV file read operation.")
-            logging.error(
-                f"Input data length: {len(audio_wav_file_binary_data) if audio_wav_file_binary_data else 0} bytes"
-            )
+#             # Log additional context
+#             logging.error("Failed during WAV file read operation.")
+#             logging.error(
+#                 f"Input data length: {len(audio_wav_file_binary_data) if audio_wav_file_binary_data else 0} bytes"
+#             )
 
-            # Optional: Log any specific attributes if you have more context (e.g., expected values)
-            # For example, you could log expected frame rate and block align values if known
-            expected_sample_rate = 44100
-            expected_block_align = (
-                2  # Update this if you have different expected values
-            )
-            logging.error(
-                f"Expected Sample Rate: {expected_sample_rate}, Expected Block Align: {expected_block_align}"
-            )
+#             # Optional: Log any specific attributes if you have more context (e.g., expected values)
+#             # For example, you could log expected frame rate and block align values if known
+#             expected_sample_rate = 44100
+#             expected_block_align = (
+#                 2  # Update this if you have different expected values
+#             )
+#             logging.error(
+#                 f"Expected Sample Rate: {expected_sample_rate}, Expected Block Align: {expected_block_align}"
+#             )
 
-            sys.exit(1)
-    else:
-        try:
-            bin_data = sys.stdin.buffer.read()
-            if bin_data:
-                logging.info("Successfully loaded!")
-            else:
-                logging.info("File provided is empty!")
+#             sys.exit(1)
+#     else:
+#         try:
+#             bin_data = sys.stdin.buffer.read()
+#             if bin_data:
+#                 logging.info("Successfully loaded!")
+#             else:
+#                 logging.info("File provided is empty!")
 
-            # Check if the length is valid for np.int16
-            if len(bin_data) % 2 != 0:
-                logging.error(
-                    "Binary data size is not a multiple of 2 bytes. Adjusting..."
-                )
-                bin_data = bin_data[
-                    : -(len(bin_data) % 2)
-                ]  # Truncate the extra byte(s)
+#             # Check if the length is valid for np.int16
+#             if len(bin_data) % 2 != 0:
+#                 logging.error(
+#                     "Binary data size is not a multiple of 2 bytes. Adjusting..."
+#                 )
+#                 bin_data = bin_data[
+#                     : -(len(bin_data) % 2)
+#                 ]  # Truncate the extra byte(s)
 
-            audio_data = np.frombuffer(bin_data, dtype=np.int16)
-            return is_encode, audio_data, bin_data
-        except FileNotFoundError:
-            logging.error("File does not exist!")
-            sys.exit(1)
-        except Exception as e:
-            logging.error("There was an error loading the file")
-            logging.error(f"Details 2: {e}")
+#             audio_data = np.frombuffer(bin_data, dtype=np.int16)
+#             return is_encode, audio_data, bin_data
+#         except FileNotFoundError:
+#             logging.error("File does not exist!")
+#             sys.exit(1)
+#         except Exception as e:
+#             logging.error("There was an error loading the file")
+#             logging.error(f"Details 2: {e}")
 
-            # Log additional context for decode operation
-            logging.error("Failed during binary data read operation.")
-            logging.error(
-                f"Input binary data length: {len(bin_data) if bin_data else 0} bytes"
-            )
+#             # Log additional context for decode operation
+#             logging.error("Failed during binary data read operation.")
+#             logging.error(
+#                 f"Input binary data length: {len(bin_data) if bin_data else 0} bytes"
+#             )
 
-            sys.exit(1)
+#             sys.exit(1)
 
 
 def encode_wav_to_opus(input_data, bitrate='16k'):
@@ -132,8 +132,7 @@ def encode_wav_to_opus(input_data, bitrate='16k'):
     opus_size = os.path.getsize(temp_opus_path)  # Get the size of the .opus file
     os.remove(temp_opus_path)
 
-    os.chdir("..")
-    os.chdir("..")
+    os.chdir("../..")
 
     return opus_data, opus_size
 
@@ -214,27 +213,3 @@ if __name__ == '__main__':
         bin_data = sys.stdin.buffer.read()
         decoded_data = decode_opus_to_wav(bin_data)
         save_audio_data(decoded_data)
-
-    # is_encode, audio_data, bin_data = inputSanityCheck(encode=args.encode, decode=args.decode)
-
-    # if os.isatty(sys.stdout.fileno()):
-    #     logging.error("Output stream not provided!")
-    # elif is_encode and audio_data is not None:
-    #     original_size = len(audio_data)  # Original WAV file size in bytes
-    #     encoded_data, encoded_size = encode_wav_to_opus(audio_data)
-    #     save_audio_as_binary(encoded_data)
-    #     calculate_compression(original_size, encoded_size)
-    # elif not is_encode and audio_data is not None:
-    #     decoded_data = decode_opus_to_wav(bin_data)
-    #     save_audio_data(decoded_data)
-
-    # if os.isatty(sys.stdout.fileno()):
-    #     logging.error("Output stream not provided!")
-    # elif is_encode and audio_data is not None:
-    #     original_size = len(audio_data)  # Original WAV file size in bytes
-    #     encoded_data, encoded_size = encode_wav_to_opus(audio_data)
-    #     save_audio_as_binary(encoded_data)
-    #     calculate_compression(original_size, encoded_size)
-    # elif not is_encode and audio_data is not None:
-    #     decoded_data = decode_opus_to_wav(bin_data)
-    #     save_audio_data(decoded_data)
