@@ -151,6 +151,7 @@ def calculate_compression(original_size, compressed_size):
     logging.info(f"compressed size: {compressed_size:.5f}")
     logging.info(f"original size: {original_size:.5f}")
     logging.info(f"Compression: {compression:.5f}%")
+    return compression
 
 
 if __name__ == "__main__":
@@ -175,7 +176,9 @@ if __name__ == "__main__":
         original_size = len(audio_data)
         encoded_data, encoded_size = encode_wav_to_flac(audio_data)
         save_audio_as_binary(encoded_data)
-        calculate_compression(original_size, encoded_size)
+        compression = calculate_compression(original_size, encoded_size)
+        with open('compressions.txt', 'w') as f:
+            f.write(str(compression))
     elif args.decode:
         bin_data = sys.stdin.buffer.read()
         decoded_data = decode_flac_to_wav(bin_data)
